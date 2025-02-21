@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-
 import {
   createBrowserRouter,
   RouterProvider,
@@ -19,34 +18,29 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: 
-      <Home/>
+    element: <Home />
   },
   {
-    path:"tasks",
-    element:
-    <PrivateRoute>
-      <Tasks></Tasks>
-    </PrivateRoute>
-    
+    path: "tasks",
+    element: <PrivateRoute><Tasks></Tasks> </PrivateRoute>
   },
   {
-    path:"login",
-    element:<Login></Login>
+    path: "login",
+    element: <Login></Login>
   },
   {
-    path:"register",
-    element:<Register></Register>
+    path: "register",
+    element: <Register></Register>
   }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-  <AuthProvider>
-  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
         <Toaster />
         <RouterProvider router={router} />
       </QueryClientProvider>
-  </AuthProvider>
-</StrictMode>,
+    </AuthProvider>
+  </StrictMode>,
 )
