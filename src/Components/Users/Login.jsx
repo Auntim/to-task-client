@@ -6,6 +6,8 @@ import { signInWithPopup, getAuth, GoogleAuthProvider } from "firebase/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
+import loginlotti from '../../assets/lotti/login.json'
+import Lottie from "lottie-react";
 
 const Login = () => {
   const { setUser, userSignIn } = useContext(AuthContext);
@@ -36,21 +38,20 @@ const Login = () => {
           .post("http://localhost:5000/users", userInfo)
           .then((res) => {
             if (res.data.insertedId) {
-              // console.log("User stored in database:", res.data);
+
             }
           })
           .catch((error) => {
             console.error("Error saving user to database:", error);
           });
 
-        // Regardless of database response, update state, show toast, and navigate
-        setUser(user); // Set the user context
+        setUser(user);
         toast.success("Login Successful!");
         navigate(location?.state ? location.state : "/");
       })
       .catch((err) => {
         console.error("Google Sign-In Error:", err);
-        setUser(null); // Clear the user context on error
+        setUser(null);
         toast.error("Google Sign-In failed. Please try again.");
       });
   };
@@ -71,82 +72,86 @@ const Login = () => {
   };
 
   return (
-    <div className="md:w-2/5 mx-auto w-4/5 mt-10">
-      <div>
-        <h1 className="text-center font-medium text-xl">
-          Login to your account
-        </h1>
+    <div className="md: mx-auto w-4/5 mt-10 flex justify-center">
+      <div className="hidden md:flex w-2/5 rounded-lg">
+        <Lottie animationData={loginlotti} />
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="border-black card-body border-2 my-10"
-      >
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="email"
-            placeholder="email"
-            className="input input-bordered rounded-none"
-            {...register("email", { required: "Email is required" })}
-          />
-          {errors.email && (
-            <p className="text-red-600 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            type="password"
-            placeholder="password"
-            className="input input-bordered rounded-none"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 6,
-                message: "Password must be at least 6 characters long",
-              },
-            })}
-          />
-          {errors.password && (
-            <p className="text-red-600 text-sm">{errors.password.message}</p>
-          )}
-          <label className="label">
-            <p className="label-text-alt link link-hover">Forgot password?</p>
-          </label>
-        </div>
-        <div className="form-control mt-6">
-          <button
-            type="submit"
-            className="btn rounded-none bg-black text-white"
-          >
-            Login
-          </button>
-        </div>
-        <div>
-          <h1>
-            Don't have an account?{" "}
-            <Link to="/register" className="text-blue-600">
-              Register
-            </Link>
-          </h1>
-        </div>
-        <div className="flex w-full flex-col">
-          <div className="divider">Or</div>
-        </div>
-        <div>
-          <button
-            type="button"
-            onClick={handleGoogleSignIn}
-            className="w-full btn rounded-none btn-outline"
-          >
-            Login With Google <FaGoogle />
-          </button>
-        </div>
-      </form>
+      <div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="border-black card-body border-2 my-10 bg-gradient-to-r from-fuchsia-500 via-fuchsia-400 to-fuchsia-300 rounded-lg "
+        >
+          <div className="form-control">
+            <h1 className="text-center text-white font-bold text-xl md:text-2xl  mb-12">
+              Please Login to continue!
+            </h1>
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              placeholder="email"
+              className="input input-bordered rounded-none"
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <p className="text-red-600 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              placeholder="password"
+              className="input input-bordered rounded-none"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters long",
+                },
+              })}
+            />
+            {errors.password && (
+              <p className="text-red-600 text-sm">{errors.password.message}</p>
+            )}
+            <label className="label">
+              <p className="label-text-alt link link-hover">Forgot password?</p>
+            </label>
+          </div>
+          <div className="form-control mt-6">
+            <button
+              type="submit"
+              className="btn rounded-lg bg-black text-white"
+            >
+              Login
+            </button>
+          </div>
+          <div>
+            <h1 className="text-center  mt-2">
+              Don't have an account?{" "}
+              <Link to="/register" className="text-blue-600">
+                Register
+              </Link>
+            </h1>
+          </div>
+          <div className="flex w-full flex-col">
+            <div className="divider">Or</div>
+          </div>
+          <div>
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              className="w-full btn rounded-lg btn-outline"
+            >
+              Login With Google <FaGoogle />
+            </button>
+          </div>
+        </form>
+      </div>
+
     </div>
   );
 };
