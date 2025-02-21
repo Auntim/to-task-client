@@ -4,8 +4,10 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
-const img_hosting_key = import.meta.env.VITE_image_api_key;
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
+import logoutlotti from '../../assets/lotti/logout.json'
+import Lottie from "lottie-react";
+// const img_hosting_key = import.meta.env.VITE_image_api_key;
+// const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Register = () => {
   const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
@@ -22,12 +24,12 @@ const Register = () => {
     // console.log(data);
 
     // Image upload to imgbb and get the URL
-    const imageFile = { image: data.image[0] };
-    const res = await axios.post(img_hosting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    // const imageFile = { image: data.image[0] };
+    // const res = await axios.post(img_hosting_api, imageFile, {
+    //   headers: {
+    //     "content-type": "multipart/form-data",
+    //   },
+    // });
 
     if (res.data.success) {
       const photo = res.data.data.display_url; // Extract the photo URL
@@ -89,93 +91,89 @@ const Register = () => {
   };
 
   return (
-    <div className="md:w-2/5 mx-auto w-4/5 mt-10">
-      <div>
-        <h1 className=" text-center font-medium text-xl">
-          Register your account
-        </h1>
+    <div className="w-4/5 mx-auto mt-10 flex justify-center">
+      <div className="hidden md:flex w-2/5 rounded-lg">
+        <Lottie animationData={logoutlotti} />
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="border-black card-body border-2  my-10 "
-      >
-        {/* Name Field */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text rounded-none">Name</span>
-          </label>
-          <input
-            type="text"
-            placeholder="name"
-            className="input input-bordered rounded-none"
-            {...register("name", { required: "Name is required" })}
-          />
-          {errors.name && (
-            <p className="text-red-600 text-sm">{errors.name.message}</p>
-          )}
-        </div>
 
-        {/* Photo URL Field */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text rounded-none ">Select Image</span>
-          </label>
-          <input
-            {...register("image", { required: true })}
-            type="file"
-            className="file-input "
-          />
-        </div>
-
-        {/* Email Field */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="email"
-            placeholder="email"
-            className="input input-bordered rounded-none"
-            {...register("email", { required: "Email is required" })}
-          />
-          {errors.email && (
-            <p className="text-red-600 text-sm">{errors.email.message}</p>
-          )}
-        </div>
-
-        {/* Password Field */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            type="password"
-            placeholder="password"
-            className="input input-bordered rounded-none"
-            {...register("password", { required: "Password is required" })}
-          />
-          {errors.password && (
-            <p className="text-red-600 text-sm">{errors.password.message}</p>
-          )}
-        </div>
-
-        {/* Submit Button */}
-        <div className="form-control mt-6">
-          <button className="btn bg-black rounded-none text-white">
-            Register
-          </button>
-        </div>
-
-        {/* Already have an account */}
-        <div>
-          <h1>
-            Already have an account?{" "}
-            <Link to="/login" className="text-blue-600">
-              Login
-            </Link>
+      <div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="border-black card-body border-2 my-10 bg-gradient-to-r from-fuchsia-500 via-fuchsia-400 to-fuchsia-300 rounded-lg max-w-sm"
+        >
+          <h1 className=" text-center text-white font-bold text-xl md:text-2xl  mb-4">
+            Register your account
           </h1>
-        </div>
-      </form>
+          {/* Name Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text rounded-none">Name</span>
+            </label>
+            <input
+              type="text"
+              placeholder="name"
+              className="input input-bordered rounded-none"
+              {...register("name", { required: "Name is required" })}
+            />
+            {errors.name && (
+              <p className="text-red-600 text-sm">{errors.name.message}</p>
+            )}
+          </div>
+
+
+
+          {/* Email Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              placeholder="email"
+              className="input input-bordered rounded-none"
+              {...register("email", { required: "Email is required" })}
+            />
+            {errors.email && (
+              <p className="text-red-600 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+
+          {/* Password Field */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              placeholder="password"
+              className="input input-bordered rounded-none"
+              {...register("password", { required: "Password is required" })}
+            />
+            {errors.password && (
+              <p className="text-red-600 text-sm">{errors.password.message}</p>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <div className="form-control mt-6">
+            <button className="btn bg-black rounded-none text-white">
+              Register
+            </button>
+          </div>
+
+          {/* Already have an account */}
+          <div>
+            <h1>
+              Already have an account?{" "}
+              <Link to="/login" className="text-blue-600">
+                Login
+              </Link>
+            </h1>
+          </div>
+        </form>
+      </div>
+
+
     </div>
   );
 };

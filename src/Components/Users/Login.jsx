@@ -72,7 +72,7 @@ const Login = () => {
   };
 
   return (
-    <div className="md: mx-auto w-4/5 mt-10 flex justify-center">
+    <div className=" mx-auto w-4/5 mt-10 flex justify-center">
       <div className="hidden md:flex w-2/5 rounded-lg">
         <Lottie animationData={loginlotti} />
       </div>
