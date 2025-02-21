@@ -20,7 +20,7 @@ https://tasktrackerbymahim.netlify.app
 ### Frontend
 - React.js with Vite
 - Tailwind CSS
-- Firebase Authentication
+- Firebase 
 - Framer Motion
 - @hello-pangea/dnd (Drag and Drop)
 - Axios
@@ -33,9 +33,13 @@ https://tasktrackerbymahim.netlify.app
 - Express.js
 - MongoDB
 - Cors
+- jsonwebtoken
 - Dotenv
+
 
 ## Installation
 
 1. Clone the repository both client and server
-2. Run npm i on both folder's command prompt
+*git clone https://repu link
+*npm install
+*npm run dev
