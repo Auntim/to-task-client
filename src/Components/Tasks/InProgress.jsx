@@ -28,7 +28,7 @@ const InProgress = ({ tasks, refetch }) => {
 
   const handleUpdate = () => {
     axios
-      .put(`http://localhost:5000/tasks/${selectedTask._id}?addedBy=${selectedTask.addedBy}`, {
+      .put(`https://task-tracker-servers.vercel.app/tasks/${selectedTask._id}?addedBy=${selectedTask.addedBy}`, {
         title: updatedTitle,
         description: updatedDescription,
         category: selectedTask.category,
@@ -46,7 +46,7 @@ const InProgress = ({ tasks, refetch }) => {
 
   const handleDelete = (taskId, addedBy) => {
     axios
-      .delete(`http://localhost:5000/tasks/${taskId}?addedBy=${addedBy}`)
+      .delete(`https://task-tracker-servers.vercel.app/tasks/${taskId}?addedBy=${addedBy}`)
       .then(() => {
         refetch();
         toast.success("Task deleted successfully");
@@ -96,7 +96,7 @@ const InProgress = ({ tasks, refetch }) => {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="space-y-4 min-h-[200px]"
+            className="space-y-4 min-h-[400px]"
           >
             {tasks?.map((task, index) => (
               <Draggable key={task._id} draggableId={task._id} index={index}>
@@ -105,11 +105,9 @@ const InProgress = ({ tasks, refetch }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className={`border-2 border-blue-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
-                                          shadow-[0px_4px_10px_rgba(59,130,246,10)] 
-                                          ${snapshot.isDragging
-                        ? "opacity-75"
-                        : ""
+                    className={`border-2 border-blue-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col  ${snapshot.isDragging
+                      ? "opacity-75"
+                      : ""
                       }`}
                   >
                     <div className="font-medium text-lg flex gap-1 items-center">
@@ -135,7 +133,7 @@ const InProgress = ({ tasks, refetch }) => {
                         <p className="text-sm text-gray-700"> Description:{task.description}</p>
                       </div>
 
-                      <div className="flex gap-2 items-center">
+                      <div className="flex gap-2 items-center ml-4">
                         <button onClick={() => openModal(task)}
                           className="btn bg-gray-800 text-green-700"
                         >

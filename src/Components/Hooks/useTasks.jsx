@@ -11,7 +11,7 @@ const useTasks = () => {
     queryFn: async () => {
       if (!user?.email) return [];
 
-      const res = await axios.get(`http://localhost:5000/tasks`, {
+      const res = await axios.get(`https://task-tracker-servers.vercel.app/tasks`, {
         params: {
           addedBy: user.email,
         },

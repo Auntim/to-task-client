@@ -28,7 +28,7 @@ const Done = ({ tasks, refetch }) => {
 
   const handleUpdate = () => {
     axios
-      .put(`http://localhost:5000/tasks/${selectedTask._id}?addedBy=${selectedTask.addedBy}`, {
+      .put(`https://task-tracker-servers.vercel.app/tasks/${selectedTask._id}?addedBy=${selectedTask.addedBy}`, {
         title: updatedTitle,
         description: updatedDescription,
         category: selectedTask.category,
@@ -46,7 +46,7 @@ const Done = ({ tasks, refetch }) => {
 
   const handleDelete = (taskId, addedBy) => {
     axios
-      .delete(`http://localhost:5000/tasks/${taskId}?addedBy=${addedBy}`)
+      .delete(`https://task-tracker-servers.vercel.app/tasks/${taskId}?addedBy=${addedBy}`)
       .then(() => {
         refetch();
         toast.success("Task deleted successfully");
@@ -86,10 +86,7 @@ const Done = ({ tasks, refetch }) => {
   return (
     <div className="md:w-2/6">
       <div className="text-xl md:text-2xl text-green-600 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
-        <p>
-          <IoCheckmarkDoneCircleOutline />
-        </p>
-        <p>Done</p>
+        <p>Done Category</p>
       </div>
 
       <Droppable droppableId="done">
@@ -97,7 +94,7 @@ const Done = ({ tasks, refetch }) => {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="space-y-4 min-h-[200px]"
+            className="space-y-4 min-h-[400px]"
           >
             {tasks?.map((task, index) => (
               <Draggable key={task._id} draggableId={task._id} index={index}>
@@ -107,16 +104,15 @@ const Done = ({ tasks, refetch }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     className={`border-2 border-green-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
-                                            shadow-[0px_4px_10px_rgba(34,197,94,10)] 
-                                            ${
-                                              snapshot.isDragging
-                                                ? "opacity-75"
-                                                : ""
-                                            }`}
+                                             
+                                            ${snapshot.isDragging
+                        ? "opacity-75"
+                        : ""
+                      }`}
                   >
                     <div className="font-medium text-lg flex gap-1 items-center">
                       <TbSubtask />
-                      <span>{task.title}</span>
+                      <span className="font-bold">Title:{task.title}</span>
                     </div>
 
                     <div className="text-md flex gap-1 items-center">
@@ -129,15 +125,19 @@ const Done = ({ tasks, refetch }) => {
                         className="flex gap-1 items-center text-info cursor-pointer"
                         onClick={() => openModal(task)}
                       >
-                        <FaEye />
-                        <span>Description</span>
+
+                        <span className="text-sm text-gray-700">Description: {task.description}</span>
                       </div>
 
-                      <div className="flex gap-2 items-center">
-                        <button onClick={() => openModal(task)}>
+                      <div className="flex gap-2 items-center ml-4">
+                        <button onClick={() => openModal(task)}
+                          className="btn bg-gray-800 text-green-700"
+                        >
                           <FaPen className="text-green-500 text-sm" />
                         </button>
-                        <button onClick={() => handleDelete(task._id, task.addedBy)}>
+                        <button onClick={() => handleDelete(task._id, task.addedBy)}
+                          className="btn bg-gray-800 text-red-700"
+                        >
                           <MdDeleteForever className="text-lg text-error" />
                         </button>
                       </div>

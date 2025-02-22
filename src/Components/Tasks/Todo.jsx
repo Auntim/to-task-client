@@ -33,7 +33,7 @@ const Todo = ({ tasks, refetch }) => {
   const handleUpdate = () => {
     axios
       .put(
-        `http://localhost:5000/tasks/${selectedTask._id}?addedBy=${selectedTask.addedBy}`,
+        `https://task-tracker-servers.vercel.app/tasks/${selectedTask._id}?addedBy=${selectedTask.addedBy}`,
         {
           title: updatedTitle,
           description: updatedDescription,
@@ -54,7 +54,7 @@ const Todo = ({ tasks, refetch }) => {
   // delete
   const handleDelete = (taskId, addedBy) => {
     axios
-      .delete(`http://localhost:5000/tasks/${taskId}?addedBy=${addedBy}`)
+      .delete(`https://task-tracker-servers.vercel.app/tasks/${taskId}?addedBy=${addedBy}`)
       .then((res) => {
         refetch();
         toast.success("Task deleted successfully");
@@ -89,7 +89,7 @@ const Todo = ({ tasks, refetch }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     className={`border-2 border-red-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
-                                            shadow-[0px_4px_10px_rgba(239,68,68,10)] 
+                                            
                                             ${snapshot.isDragging
                         ? "opacity-75"
                         : ""
