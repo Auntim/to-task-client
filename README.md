@@ -1,10 +1,14 @@
 # Task Tracker
 
-A modern task management application that allows users to organize their tasks in a Kanban-style board with drag-and-drop functionality. Users can create, update, and track tasks across different stages: To-Do, In Progress, and Done.
+Modern task management application that allows users to organize their tasks in a Kanban-style board with drag-and-drop functionality. Users can create, update, and track tasks across different stages: To-Do, In Progress, and Done.
 
 ## Live Links
 
-https://tasktrackerbymahim.netlify.app
+Project Live Link :-https://laywer-service.web.app/
+
+Client Repo Link :-https://github.com/Auntim/to-task-client
+
+Server Repo Link :-https://github.com/Auntim/todo-task-server
 
 ## Features
 
