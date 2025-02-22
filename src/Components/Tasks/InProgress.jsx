@@ -87,10 +87,8 @@ const InProgress = ({ tasks, refetch }) => {
   return (
     <div className="md:w-2/6">
       <div className="text-xl md:text-2xl text-blue-600 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
-        <p>
-          <RiProgress7Line />
-        </p>
-        <p>In Progress</p>
+
+        <p>In Progress Category</p>
       </div>
 
       <Droppable droppableId="inProgress">
@@ -109,17 +107,16 @@ const InProgress = ({ tasks, refetch }) => {
                     {...provided.dragHandleProps}
                     className={`border-2 border-blue-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
                                           shadow-[0px_4px_10px_rgba(59,130,246,10)] 
-                                          ${
-                                            snapshot.isDragging
-                                              ? "opacity-75"
-                                              : ""
-                                          }`}
+                                          ${snapshot.isDragging
+                        ? "opacity-75"
+                        : ""
+                      }`}
                   >
                     <div className="font-medium text-lg flex gap-1 items-center">
                       <p>
                         <TbSubtask />
                       </p>
-                      <p>{task.title}</p>
+                      <p className="font-bold">Title:{task.title}</p>
                     </div>
 
                     <div className="text-md flex gap-1 items-center">
@@ -134,18 +131,20 @@ const InProgress = ({ tasks, refetch }) => {
                         className="flex gap-1 items-center text-info cursor-pointer"
                         onClick={() => openModal(task)}
                       >
-                        <p>
-                          <FaEye />
-                        </p>
-                        <p> Description</p>
+
+                        <p className="text-sm text-gray-700"> Description:{task.description}</p>
                       </div>
 
                       <div className="flex gap-2 items-center">
-                        <button onClick={() => openModal(task)}>
+                        <button onClick={() => openModal(task)}
+                          className="btn bg-gray-800 text-green-700"
+                        >
                           <FaPen className="text-green-500 text-sm" />
                         </button>
 
-                        <button onClick={() => handleDelete(task._id, task.addedBy)}>
+                        <button onClick={() => handleDelete(task._id, task.addedBy)}
+                          className="btn bg-gray-800 text-red-700"
+                        >
                           <MdDeleteForever className="text-lg text-error" />
                         </button>
                       </div>

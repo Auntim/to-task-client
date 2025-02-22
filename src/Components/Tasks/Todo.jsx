@@ -67,11 +67,11 @@ const Todo = ({ tasks, refetch }) => {
   return (
     <div className="md:w-2/6">
       {/* Title */}
-      <div className="text-xl md:text-2xl text-red-500 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
-        <p>
+      <div className="text-xl md:text-2xl text-red-700 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
+        {/* <p>
           <ImTarget />
-        </p>
-        <p>To-Do</p>
+        </p> */}
+        <p>To-Do Category</p>
       </div>
 
       <Droppable droppableId="todo">
@@ -79,7 +79,7 @@ const Todo = ({ tasks, refetch }) => {
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
-            className="space-y-4 min-h-[200px]"
+            className="space-y-4 min-h-[400px]"
           >
             {tasks?.map((task, index) => (
               <Draggable key={task._id} draggableId={task._id} index={index}>
@@ -90,18 +90,17 @@ const Todo = ({ tasks, refetch }) => {
                     {...provided.dragHandleProps}
                     className={`border-2 border-red-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
                                             shadow-[0px_4px_10px_rgba(239,68,68,10)] 
-                                            ${
-                                              snapshot.isDragging
-                                                ? "opacity-75"
-                                                : ""
-                                            }`}
+                                            ${snapshot.isDragging
+                        ? "opacity-75"
+                        : ""
+                      }`}
                   >
                     {/* Title */}
                     <div className="font-medium text-lg flex gap-1 items-center">
                       <p>
                         <TbSubtask />
                       </p>
-                      <p>{task.title}</p>
+                      <p className="font-bold">Title:{task.title}</p>
                     </div>
 
                     {/* Time */}
@@ -118,23 +117,24 @@ const Todo = ({ tasks, refetch }) => {
                         className="flex gap-1 items-center text-info cursor-pointer"
                         onClick={() => openModal(task)}
                       >
-                        <p>
-                          <FaEye />
-                        </p>
-                        <p> Description</p>
+
+                        <p className="text-sm text-gray-700">Description : {task.description}</p>
                       </div>
 
-                      <div className="flex gap-2 items-center">
+                      <div className="flex gap-2 items-center ml-4">
                         {/* Edit Button */}
-                        <button onClick={() => openModal(task)}>
-                          <FaPen className="text-green-500 text-sm" />
+                        <button onClick={() => openModal(task)}
+                          className="btn bg-gray-800 text-green-700"
+                        >
+                          <FaPen className="text-green-500 text-lg" />
                         </button>
 
                         {/* Delete Button */}
                         <button
                           onClick={() => handleDelete(task._id, task.addedBy)}
+                          className="btn bg-gray-800 text-red-700"
                         >
-                          <MdDeleteForever className="text-lg text-error" />
+                          <MdDeleteForever className="text-2xl text-error" />
                         </button>
                       </div>
                     </div>
