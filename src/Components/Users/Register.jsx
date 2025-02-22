@@ -112,7 +112,7 @@ const Register = () => {
             <input
               type="text"
               placeholder="name"
-              className="input input-bordered rounded-none"
+              className="input input-bordered rounded-lg"
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -130,7 +130,7 @@ const Register = () => {
             <input
               type="email"
               placeholder="email"
-              className="input input-bordered rounded-none"
+              className="input input-bordered rounded-lg"
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
@@ -146,7 +146,7 @@ const Register = () => {
             <input
               type="password"
               placeholder="password"
-              className="input input-bordered rounded-none"
+              className="input input-bordered rounded-lg"
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
@@ -156,12 +156,12 @@ const Register = () => {
 
           {/* Submit Button */}
           <div className="form-control mt-6">
-            <button className="btn bg-black rounded-none text-white">
+            <button className="btn bg-black rounded-lg text-white">
               Register
             </button>
           </div>
 
-          {/* Already have an account */}
+
           <div>
             <h1>
               Already have an account?{" "}

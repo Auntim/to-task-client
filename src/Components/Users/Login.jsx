@@ -91,7 +91,7 @@ const Login = () => {
             <input
               type="email"
               placeholder="email"
-              className="input input-bordered rounded-none"
+              className="input input-bordered rounded-lg"
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
@@ -105,7 +105,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="password"
-              className="input input-bordered rounded-none"
+              className="input input-bordered rounded-lg"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
