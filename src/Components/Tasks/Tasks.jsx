@@ -16,7 +16,7 @@ const Tasks = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const { user,logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [, refetch] = useTasks();
   const navigate = useNavigate()
@@ -40,7 +40,7 @@ const Tasks = () => {
         toast.success("Task added successfully!");
         reset();
         refetch();
-        setIsOpen(false); // Close modal after successful submission
+        setIsOpen(false);
       }
     } catch (error) {
       console.error("Error saving task to database:", error);
@@ -60,26 +60,24 @@ const Tasks = () => {
   };
 
   return (
-    <div className="w-4/5 mx-auto py-10">
+    <div className=" w-4/5 mx-auto py-10 ">
       {/* Title Section */}
       <div className="flex justify-between ">
-              <div className="flex items-center gap-4 justify-center mb-8">
-                <p className="text-2xl md:text-4xl lg:text-6xl font-bold">
-                  <FaTasks />
-                </p>
-                <p className="text-2xl md:text-4xl lg:text-6xl font-bold">
-                  Track Your Task
-                </p>
-              </div>
-              {/* logout */}
+        <div className="flex items-center gap-4 justify-center mb-8 text-center">
+          <p className="text-2xl md:text-4xl lg:text-6xl font-bold text-center">
+            Track Your Task and Stay Organized
+          </p>
+        </div>
+        {/* logout */}
 
-              <div>
-                <button 
-                  onClick={()=> handleLogout()}
-                >
-                <IoLogOutOutline  className="text-4xl font-bold"/>
-                </button>
-              </div>
+        <div>
+          <button
+            onClick={() => handleLogout()}
+            className="btn btn-outline"
+          >
+            SignOut
+          </button>
+        </div>
       </div>
 
       {/* Add Task Button */}
@@ -92,7 +90,7 @@ const Tasks = () => {
             {" "}
             <BiTask className="font-bold" />
           </p>
-          Add Task
+          Create Task as your wish!
         </button>
       </div>
 
@@ -103,7 +101,7 @@ const Tasks = () => {
       {/* Modal */}
       {isOpen && (
         <div className="overflow-y-auto fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg w-11/12 md:w-2/3 lg:w-2/4">
+          <div className="bg-white p-6 rounded-lg w-11/12 md:w-2/3 lg:max-w-sm mx-auto">
             <h2 className="text-2xl font-bold mb-4">Add a New Task</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Title Input */}
@@ -186,7 +184,7 @@ const Tasks = () => {
                   type="submit"
                   className="bg-[#2c2b2b] px-6 py-2 rounded-lg text-white font-semibold hover:bg-[#1d1d1d] transition-all"
                 >
-                  Submit Task
+                  Add Task
                 </button>
               </div>
             </form>
