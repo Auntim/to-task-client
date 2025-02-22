@@ -8,7 +8,8 @@ import { BiTask } from "react-icons/bi";
 import AllTasks from "./AllTasks";
 import useTasks from "../Hooks/useTasks";
 import { IoLogOutOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ToggleDark from "../Provider/ToggleDark";
 const Tasks = () => {
   const {
     register,
@@ -60,11 +61,11 @@ const Tasks = () => {
   };
 
   return (
-    <div className=" w-4/5 mx-auto py-10 border-2 border-fuchsia-600 px-8 rounded-xl mt-6">
+    <div className=" w-4/5 mx-auto py-10 border-2 border-fuchsia-600 px-8 rounded-xl mt-6 dark:bg-medium dark:text-white">
       {/* Title Section */}
-      <div className="flex justify-between border-b-2 border-blue-700 rounded-lg mb-6">
-        <div className="flex items-center gap-4 justify-center mb-8 text-center">
-          <p className="text-2xl md:text-4xl lg:text-6xl font-bold text-center">
+      <div className="flex justify-between border-b-2 border-blue-700 rounded-lg mb-6 items-center">
+        <div className="flex items-center gap-4 justify-center mb-6 text-center">
+          <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-center dark:text-white">
             Track Your Task and Stay Organized
           </p>
         </div>
@@ -73,10 +74,18 @@ const Tasks = () => {
         <div>
           <button
             onClick={() => handleLogout()}
-            className="btn btn-outline"
+            className="btn btn-outline dark:text-white"
           >
             SignOut
           </button>
+        </div>
+        <div className="mx-3">
+          <ToggleDark />
+        </div>
+        <div className="relative  ">
+          <Link to="/">
+            <img className="rounded-full h-8 w-8 md:h-12 md:w-12 cursor-pointer  border-2 border-fuchsia-800" src={user.photoURL} alt="profile" />
+          </Link>
         </div>
 
       </div>
@@ -113,7 +122,7 @@ const Tasks = () => {
                 <input
                   type="text"
                   placeholder="Enter task title"
-                  className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                   {...register("title", {
                     required: "Title is required",
                     maxLength: {
@@ -135,7 +144,7 @@ const Tasks = () => {
                 <textarea
                   placeholder="Enter task description (optional)"
                   rows="4"
-                  className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
                   {...register("description", {
                     maxLength: {
                       value: 200,

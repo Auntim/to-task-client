@@ -88,7 +88,7 @@ const Todo = ({ tasks, refetch }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className={`border-2 border-red-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
+                    className={`border-2 border-red-200 bg-slate-200 dark:bg-medium p-2 rounded-md flex gap-2 flex-col 
                                             
                                             ${snapshot.isDragging
                         ? "opacity-75"
@@ -96,7 +96,7 @@ const Todo = ({ tasks, refetch }) => {
                       }`}
                   >
                     {/* Title */}
-                    <div className="font-medium text-lg flex gap-1 items-center">
+                    <div className="font-medium text-lg flex gap-1 items-center dark:text-white">
                       <p>
                         <TbSubtask />
                       </p>
@@ -104,7 +104,7 @@ const Todo = ({ tasks, refetch }) => {
                     </div>
 
                     {/* Time */}
-                    <div className="text-md flex gap-1 items-center">
+                    <div className="text-md flex gap-1 items-center dark:text-white">
                       <p>
                         <FaRegClock />
                       </p>
@@ -118,7 +118,7 @@ const Todo = ({ tasks, refetch }) => {
                         onClick={() => openModal(task)}
                       >
 
-                        <p className="text-sm text-gray-700">Description : {task.description}</p>
+                        <p className="text-sm text-gray-700 dark:text-white">Description : {task.description}</p>
                       </div>
 
                       <div className="flex gap-2 items-center ml-4">
@@ -150,14 +150,14 @@ const Todo = ({ tasks, refetch }) => {
       {/* Modal */}
       {selectedTask && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 dark:bg-medium">
             <h2 className="text-xl font-bold mb-2">Edit Task</h2>
 
             {/* Title Input */}
             <div className="mb-4">
               <label
                 htmlFor="title"
-                className="block text-gray-700 font-semibold"
+                className="block text-gray-700 font-semibold dark:text-white"
               >
                 Title
               </label>
@@ -167,7 +167,7 @@ const Todo = ({ tasks, refetch }) => {
                 required
                 value={updatedTitle}
                 onChange={handleTitleChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
 
@@ -175,7 +175,7 @@ const Todo = ({ tasks, refetch }) => {
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 font-semibold"
+                className="block text-gray-700 font-semibold dark:text-white"
               >
                 Description
               </label>
@@ -184,7 +184,7 @@ const Todo = ({ tasks, refetch }) => {
                 value={updatedDescription}
                 required
                 onChange={handleDescriptionChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
                 rows="4"
               />
             </div>

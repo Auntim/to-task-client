@@ -6,8 +6,8 @@ import axios from "axios";
 import { AuthContext } from "../Provider/AuthProvider";
 import logoutlotti from '../../assets/lotti/logout.json'
 import Lottie from "lottie-react";
-// const img_hosting_key = import.meta.env.VITE_image_api_key;
-// const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
+const img_hosting_key = import.meta.env.VITE_image_api_key;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Register = () => {
   const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
@@ -24,15 +24,15 @@ const Register = () => {
     // console.log(data);
 
     // Image upload to imgbb and get the URL
-    // const imageFile = { image: data.image[0] };
-    // const res = await axios.post(img_hosting_api, imageFile, {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // });
+    const imageFile = { image: data.image[0] };
+    const res = await axios.post(img_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
 
     if (res.data.success) {
-      const photo = res.data.data.display_url; // Extract the photo URL
+      const photo = res.data.data.display_url;
       const { name, email, password } = data;
 
       // Password validation
@@ -120,6 +120,16 @@ const Register = () => {
             )}
           </div>
 
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text rounded-none ">Select Image</span>
+            </label>
+            <input
+              {...register("image", { required: true })}
+              type="file"
+              className="file-input "
+            />
+          </div>
 
 
           {/* Email Field */}

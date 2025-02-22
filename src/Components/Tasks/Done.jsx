@@ -84,9 +84,9 @@ const Done = ({ tasks, refetch }) => {
   };
 
   return (
-    <div className="md:w-2/6">
+    <div className="md:w-2/6 dark:bg-medium dark:text-white">
       <div className="text-xl md:text-2xl text-green-600 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
-        <p className="hover:underline">Done Category</p>
+        <p className="hover:underline ">Done Category</p>
       </div>
 
       <Droppable droppableId="done">
@@ -103,19 +103,19 @@ const Done = ({ tasks, refetch }) => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    className={`border-2 border-green-200 bg-slate-200 p-2 rounded-md flex gap-2 flex-col 
+                    className={`border-2 border-green-200 bg-slate-200 dark:bg-medium p-2 rounded-md flex gap-2 flex-col 
                                              
                                             ${snapshot.isDragging
                         ? "opacity-75"
                         : ""
                       }`}
                   >
-                    <div className="font-medium text-lg flex gap-1 items-center">
+                    <div className="font-medium text-lg flex gap-1 items-center dark:text-white">
                       <TbSubtask />
-                      <span className="font-bold">Title:{task.title}</span>
+                      <span className="font-bold dark:text-white">Title:{task.title}</span>
                     </div>
 
-                    <div className="text-md flex gap-1 items-center">
+                    <div className="text-md flex gap-1 items-center dark:text-white">
                       <FaRegClock />
                       <span>{moment(task.timestamp).format("MMM D YYYY")}</span>
                     </div>
@@ -126,7 +126,7 @@ const Done = ({ tasks, refetch }) => {
                         onClick={() => openModal(task)}
                       >
 
-                        <span className="text-sm text-gray-700">Description: {task.description}</span>
+                        <span className="text-sm text-gray-700 dark:text-white">Description: {task.description}</span>
                       </div>
 
                       <div className="flex gap-2 items-center ml-4">
@@ -154,12 +154,12 @@ const Done = ({ tasks, refetch }) => {
       {/* Modal */}
       {selectedTask && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 dark:bg-medium">
             <h2 className="text-xl font-bold mb-2">Edit Task</h2>
             <div className="mb-4">
               <label
                 htmlFor="title"
-                className="block text-gray-700 font-semibold"
+                className="block text-gray-700 font-semibold dark:text-white"
               >
                 Title
               </label>
@@ -169,13 +169,13 @@ const Done = ({ tasks, refetch }) => {
                 required
                 value={updatedTitle}
                 onChange={handleTitleChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
               />
             </div>
             <div className="mb-4">
               <label
                 htmlFor="description"
-                className="block text-gray-700 font-semibold"
+                className="block text-gray-700 font-semibold dark:text-white"
               >
                 Description
               </label>
@@ -184,7 +184,7 @@ const Done = ({ tasks, refetch }) => {
                 value={updatedDescription}
                 required
                 onChange={handleDescriptionChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className="w-full p-2 border border-gray-300 rounded-md text-black"
                 rows="4"
               />
             </div>
