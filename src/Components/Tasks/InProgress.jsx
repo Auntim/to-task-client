@@ -88,7 +88,7 @@ const InProgress = ({ tasks, refetch }) => {
     <div className="md:w-2/6">
       <div className="text-xl md:text-2xl text-blue-600 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
 
-        <p>In Progress Category</p>
+        <p className="hover:underline">In Progress Category</p>
       </div>
 
       <Droppable droppableId="inProgress">

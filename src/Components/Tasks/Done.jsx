@@ -86,7 +86,7 @@ const Done = ({ tasks, refetch }) => {
   return (
     <div className="md:w-2/6">
       <div className="text-xl md:text-2xl text-green-600 lg:text-3xl font-bold flex justify-center items-center gap-2 mb-5">
-        <p>Done Category</p>
+        <p className="hover:underline">Done Category</p>
       </div>
 
       <Droppable droppableId="done">

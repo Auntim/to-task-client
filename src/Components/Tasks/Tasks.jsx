@@ -60,9 +60,9 @@ const Tasks = () => {
   };
 
   return (
-    <div className=" w-4/5 mx-auto py-10 ">
+    <div className=" w-4/5 mx-auto py-10 border-2 border-fuchsia-600 px-8 rounded-xl mt-6">
       {/* Title Section */}
-      <div className="flex justify-between ">
+      <div className="flex justify-between border-b-2 border-blue-700 rounded-lg mb-6">
         <div className="flex items-center gap-4 justify-center mb-8 text-center">
           <p className="text-2xl md:text-4xl lg:text-6xl font-bold text-center">
             Track Your Task and Stay Organized
@@ -78,6 +78,7 @@ const Tasks = () => {
             SignOut
           </button>
         </div>
+
       </div>
 
       {/* Add Task Button */}

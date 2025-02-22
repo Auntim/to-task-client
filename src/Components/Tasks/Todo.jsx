@@ -71,7 +71,7 @@ const Todo = ({ tasks, refetch }) => {
         {/* <p>
           <ImTarget />
         </p> */}
-        <p>To-Do Category</p>
+        <p className="hover:underline">To-Do Category</p>
       </div>
 
       <Droppable droppableId="todo">
